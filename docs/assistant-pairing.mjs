@@ -7,8 +7,9 @@ export function mountAssistantPairing(targets) {
   dialog.setAttribute("aria-labelledby","bridge-title");
   dialog.innerHTML = [
     '<h2 id="bridge-title">连接本地助手</h2>',
-    '<p>下载并解压助手，双击 <code>Start_Assistant.cmd</code>。首次启动时，粘贴下面的网址。</p>',
-    '<div class="button-row"><a href="./B-read-Assistant.zip" download>下载 Windows 本地助手</a><button type="button" data-copy>复制本页网址</button></div>',
+    '<div class="button-row"><a href="./B-read-Assistant.zip" download>下载 Windows 助手</a><a href="./B-read-Assistant-macOS.zip" download>下载 macOS 助手</a></div>',
+    '<p>解压后双击启动文件。Windows 用 <code>Start_Assistant.cmd</code>，Mac 用 <code>Start_Assistant.command</code>（需要 <a href="https://www.python.org/downloads/macos/" target="_blank" rel="noopener noreferrer">Python 3.11 或更新版本</a>）。</p>',
+    '<p>首次启动时，把本页网址粘贴到助手窗口。</p><div class="button-row"><button type="button" data-copy>复制本页网址</button></div>',
     '<form>',
     '<label for="bridge-code">助手窗口里的配对码</label>',
     '<input id="bridge-code" type="text" required autocomplete="off" spellcheck="false" maxlength="64" pattern="[A-Za-z0-9_\\-]{16,64}">',

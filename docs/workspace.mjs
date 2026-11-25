@@ -225,8 +225,8 @@ const markup = `
   </section>
   <h2>ChatGPT 套餐</h2>
   <details data-assistant-setup class="setup-card">
-    <summary>Windows 本地助手</summary>
-    <p>${hostedReader ? "下载并启动 Windows 本地助手，在这里配对后完成 ChatGPT 授权。" :
+    <summary>本地助手</summary>
+    <p>${hostedReader ? "下载适合你电脑的本地助手。启动并配对后完成 ChatGPT 授权。" :
       "双击 Start_B-read.cmd 打开阅读器并启动本地助手。首次使用时，在 OpenAI 页面完成 ChatGPT 套餐授权。"}</p>
     <div data-settings-connection class="button-row"></div>
   </details>
