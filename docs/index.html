@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN" data-reader-theme="sepia">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>电子书阅读器 • B-read</title>
+  <link rel="icon" href="icon-32.png">
+  <link rel="stylesheet" href="panel.css">
+  <link rel="stylesheet" href="reader.css">
+  <script type="module" src="reader.mjs"></script>
+</head>
+<body class="reading">
+  <header class="reader-bar" id="reader-bar">
+    <div class="reader-controls reader-book-controls">
+      <div class="brand"><img src="icon-48.png" alt="" width="30" height="30"><strong>B-read</strong></div>
+      <button id="open-bookshelf" type="button" aria-haspopup="dialog">我的书库</button>
+      <button id="open-epub" type="button">打开电子书</button>
+      <input type="file" id="epub-file" accept=".epub,.mobi,.pdf,application/epub+zip,application/x-mobipocket-ebook,application/pdf" hidden>
+      <label class="sr-only" for="chapter-select">章节</label>
+      <select id="chapter-select" hidden><option>目录</option></select>
+    </div>
+    <div class="reader-controls reader-tools-controls">
+      <div class="reader-type-controls" role="group" aria-label="正文字号">
+        <button id="font-minus" type="button" aria-label="减小字号">A−</button>
+        <button id="font-plus" type="button" aria-label="增大字号">A+</button>
+      </div>
+      <button id="open-bookmarks" type="button" aria-haspopup="dialog" aria-controls="bookmarks">书签</button>
+      <button id="open-wordbook" type="button">单词本</button>
+      <button id="toggle-reader-tools" type="button" aria-controls="reader-tools" aria-expanded="false">字典</button>
+      <button id="open-support" type="button" aria-haspopup="dialog" aria-controls="support-dialog">支持B B</button>
+    </div>
+  </header>
+  <div class="reader-grid">
+    <section class="book-column">
+      <p id="book-status" role="status">打开 EPUB、MOBI 或 PDF。选中英文后，书页上会出现查词和翻译按钮。</p>
+      <p id="shelf-save-status" role="status" hidden></p>
+      <h1 id="book-title" hidden></h1>
+      <article id="book-text" aria-label="书籍正文" lang="en"></article>
+      <nav id="chapter-buttons" aria-label="翻章" hidden>
+        <button id="previous" type="button">上一章</button>
+        <button id="next" type="button">下一章</button>
+      </nav>
+    </section>
+    <aside id="reader-tools" aria-label="查词与单词本" aria-hidden="true" inert>
+      <div id="reader-splitter" role="separator" tabindex="0" aria-orientation="vertical"
+        aria-label="调整字典栏宽度" aria-controls="reader-tools" title="拖动调整宽度"></div>
+      <div class="drawer-content">
+        <div id="reader-workspace"></div>
+      </div>
+    </aside>
+  </div>
+  <div id="selection-menu" role="group" aria-label="处理选中文字" hidden>
+    <button id="selection-word" type="button">查词</button>
+    <button id="selection-translation" type="button">AI 翻译</button>
+    <button id="selection-bookmark" type="button">添加书签</button>
+  </div>
+  <dialog id="bookmarks" aria-labelledby="bookmarks-title">
+    <header class="shelf-header">
+      <h2 id="bookmarks-title">书签</h2>
+      <form method="dialog"><button type="submit" aria-label="关闭书签">关闭</button></form>
+    </header>
+    <div class="shelf-body">
+      <div id="bookmarks-tools" class="button-row">
+        <select id="bookmarks-scope" aria-label="书签范围"><option value="book">当前书籍</option><option value="all">全部书签</option></select>
+        <button id="export-bookmarks" type="button">导出</button>
+      </div>
+      <p id="bookmarks-status" role="status" class="meta"></p>
+      <ul id="bookmarks-list"></ul>
+      <form id="bookmark-form" hidden>
+        <blockquote id="bookmark-quote"></blockquote>
+        <label for="bookmark-note">批注</label>
+        <textarea id="bookmark-note" rows="5" maxlength="8000" placeholder="写下你的想法"></textarea>
+        <div class="button-row">
+          <button id="cancel-bookmark" type="button">取消</button>
+          <button type="submit" class="primary">保存书签</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+  <dialog id="bookshelf" aria-labelledby="bookshelf-title">
+    <header class="shelf-header">
+      <h2 id="bookshelf-title">我的书库</h2>
+      <form method="dialog"><button type="submit" aria-label="关闭书库">关闭</button></form>
+    </header>
+    <div class="shelf-body">
+      <div class="shelf-actions"><button id="shelf-import" type="button" class="primary">导入电子书</button></div>
+      <div id="shelf-folders"></div>
+      <p id="shelf-status" role="status"></p>
+      <ul id="shelf-books"></ul>
+    </div>
+  </dialog>
+  <dialog id="support-dialog" aria-labelledby="support-title">
+    <header class="support-header">
+      <h2 id="support-title">支持B B</h2>
+      <form method="dialog"><button type="submit" autofocus>关闭</button></form>
+    </header>
+    <img src="support-bb.jpg" alt="B B 的微信赞赏码" width="1152" height="1152">
+  </dialog>
+</body></html>
